@@ -1,0 +1,19 @@
+<div id='login-form-container'>
+    <% if flash[:notice] %>
+        <%= content_tag :h1, flash[:notice] %>
+    <% else %>
+        <%= content_tag :h1, "Please Log in" %>
+    <% end %>
+        <%= form_with url: sessions_path do |f| %>
+            <p>
+                <%= f.label :email %><br>
+                <%= f.text_field :email %><br>
+            </p>
+            <p>
+                <%= f.label :password %><br>
+                <%= f.password_field :password %><br>
+            </p>
+            <%= f.submit "Sign In!" %>
+        <% end %>
+    <%= link_to "Sign Up", new_user_path %>
+</div>

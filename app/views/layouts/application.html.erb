@@ -5,13 +5,40 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.css">
+
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+
+    <header>
+      <nav>
+
+        <% if @user %>
+          <div id="nav-buttons">
+            <%= link_to  "Posts", posts_path, class: "navbar-item" %>
+            <%= link_to  "Sign Out", "/logout", class: "navbar-item" %>
+          </div>
+          <%= content_tag :h1, flash[:notice] %>
+        <% else %>
+          <div id="nav-buttons">
+            <%= link_to  "About", "/about" %>
+            <%= link_to  "Login", new_session_path %>
+          </div>
+          <%= content_tag :h1, flash[:notice] %>
+        <% end %>
+      </nav>
+
+    </header>
+
     <%= yield %>
+
   </body>
+
+  <footer>
+    <%= button_to "Destroy this user", @user, method: :delete %>
+  </footer>
 </html>

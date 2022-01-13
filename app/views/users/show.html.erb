@@ -1,0 +1,21 @@
+<h2>User Show</h2>
+  <p style="color: green"><%= notice %></p>
+
+  <div class="conatiners">
+  
+    <div class="container">
+      <%= render @user %>
+    </div>
+
+    <div class="container">
+      <%= link_to "New post", new_post_path %>
+      <div>
+        <% @posts.each do |post| %>
+          <%= render post %>
+          <p>
+            <%= link_to "Show this post", post %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
